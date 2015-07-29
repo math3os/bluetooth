@@ -168,6 +168,10 @@
 		rfcommUnListen : function(successFunc,errorFunc,name,uuid){
 			cordova.exec(successFunc,errorFunc,"BCBluetooth","rfcommUnListen",[{"name":name,"uuid":uuid}]);
 		},
+        
+        isBLE : function(successFunc,errorFunc){
+			cordova.exec(successFunc,errorFunc, "BCBluetooth", "isBLE", []);
+		},
 		
 	};
 		module.exports = bluetooth;

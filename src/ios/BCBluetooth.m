@@ -134,6 +134,7 @@
 #define VERSION                                                 @"VERSION"
 #define IOS                                                     @"ios"
 #define BLUETOOTHSTATE                                          @"bluetooth_state"
+#define IS_BLE                                                  @"isBLE"
 #define IS_IOS_VERSION_7_HIGHER     (([[[UIDevice currentDevice] systemVersion] floatValue] >=7.0)? (YES):(NO))
 #define GAP_MODUAL                  1
 #define GATT_MODUAL                 2
@@ -490,6 +491,20 @@
     }else{
         [self error:command.callbackId];
     }
+}
+
+- (void)isBLE:(CDVInvokedUrlCommand*)command{
+    BCLOG_FUNC(GATT_MODUAL)
+    NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
+    BOOL isBLE = NO;
+    if ([CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]){
+        isBLE = YES;    
+    }
+    [info setValue:isBLE forKey:IS_BLE];
+    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:info];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    
+
 }
 
 - (void)setNotification:(CDVInvokedUrlCommand*)command{

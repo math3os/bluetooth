@@ -59,6 +59,7 @@
 - (void)getRSSI:(CDVInvokedUrlCommand*)command;
 - (void)writeValue:(CDVInvokedUrlCommand*)command;
 - (void)readValue:(CDVInvokedUrlCommand*)command;
+- (void)isBLE:(CDVInvokedUrlCommand*)command;
 - (void)setNotification:(CDVInvokedUrlCommand*)command;
 - (void)getDeviceAllData:(CDVInvokedUrlCommand*)command;
 - (void)addServices:(CDVInvokedUrlCommand*)command;

@@ -475,6 +475,10 @@
 				this.rfcommUnListen = function(name,uuid){
 					navigator.bluetooth.rfcommUnListen(testFunc,testFunc,name,uuid);
 				};
+                
+                this.isBLE =  function(success,error) {
+                    navigator.bluetooth.isBLE(success,error);
+                };
 				
 			}else{
 				alert(type+" is not support now.");
@@ -565,6 +569,7 @@
 				this.rfcommDisconnect = this.bluetoothFuncs.rfcommDisconnect;
 				this.rfcommListen = this.bluetoothFuncs.rfcommListen;
 				this.rfcommUnListen = this.bluetoothFuncs.rfcommUnListen;
+                this.isBLE = this.bluetoothFuncs.isBLE;
 				
 				this.bluetoothFuncs.initBluetooth();
 				
@@ -2084,6 +2089,7 @@
 			});
 			BC.bluetooth.addSystemListener("newadvpacket",function(scanData){
 				var advertisementData,deviceAddress,deviceName,isCon,RSSI,txPower,type;
+                console.dir(scanData);
 				if(scanData['advertisementData']){
 					advertisementData = scanData['advertisementData'];
 					if(advertisementData.manufacturerData){
