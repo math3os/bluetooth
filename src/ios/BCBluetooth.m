@@ -496,15 +496,13 @@
 - (void)isBLE:(CDVInvokedUrlCommand*)command{
     BCLOG_FUNC(GATT_MODUAL)
     NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
-    BOOL isBLE = NO;
+    NSNumber *isBLE = @NO;
     if ([CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]){
-        isBLE = YES;    
+        isBLE = @YES;
     }
-    [info setValue:isBLE forKey:IS_BLE];
+    info[IS_BLE] = isBLE;
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:info];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
-    
-
 }
 
 - (void)setNotification:(CDVInvokedUrlCommand*)command{
